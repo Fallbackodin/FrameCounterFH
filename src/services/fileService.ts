@@ -3,7 +3,5 @@ export function countFrameInMp3(buffer: Buffer): number {
 
   // YIMME: implement logic
 
-  console.log(buffer);
-
   return frameCount;
 }
