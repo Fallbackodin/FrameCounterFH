@@ -1,6 +1,7 @@
 import { countFrameInMp3 } from "../services/fileService";
 import { FileUploadRequest } from "../utils/typings/request";
 import { FileUploadResponse } from "../utils/typings/response";
+import { Mp3Error } from "../utils/typings/error";
 
 export const uploadFileMp3 = (req: FileUploadRequest, res: FileUploadResponse) => {
   try {
@@ -14,7 +15,10 @@ export const uploadFileMp3 = (req: FileUploadRequest, res: FileUploadResponse) =
 
     return res.status(200).json({ frameCount });
   }
-  catch (error) {
-    return res.status(500).json({ error: "An error occurred while processing the file" });
+  catch (error: unknown) {
+    const status = error instanceof Mp3Error ? error.status : 500;
+    const message = error instanceof Error ? error.message : "An error occurred while processing the file";
+
+    return res.status(status).json({ error: message });
   }
 }
