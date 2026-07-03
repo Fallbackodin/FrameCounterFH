@@ -9,8 +9,6 @@ const upload = multer({
   storage: multer.memoryStorage(),
 })
 
-// YIMME: Check if this should be a POST or GET API
-// router.post("/file-upload", upload.single("file"), uploadFileMp3);
 router.post("/file-upload", upload.single("file"), uploadFileMp3);
 
 export default router;
