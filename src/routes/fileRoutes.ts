@@ -4,10 +4,10 @@ import { uploadFileMp3 } from "../controllers/fileController";
 
 const router = Router();
 
-// Use multer to handle getting the file easily from the request objec 
+// Use multer to handle getting the file easily from the request objec
 const upload = multer({
   storage: multer.memoryStorage(),
-})
+});
 
 router.post("/file-upload", upload.single("file"), uploadFileMp3);
 

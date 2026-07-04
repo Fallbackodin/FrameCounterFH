@@ -14,11 +14,11 @@ export const uploadFileMp3 = (req: FileUploadRequest, res: FileUploadResponse) =
     const frameCount = countFrameInMp3(file.buffer);
 
     return res.status(200).json({ frameCount });
-  }
-  catch (error: unknown) {
+  } catch (error: unknown) {
     const status = error instanceof Mp3Error ? error.status : 500;
-    const message = error instanceof Error ? error.message : "An error occurred while processing the file";
+    const message =
+      error instanceof Error ? error.message : "An error occurred while processing the file";
 
     return res.status(status).json({ error: message });
   }
-}
+};

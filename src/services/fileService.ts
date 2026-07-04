@@ -2,9 +2,7 @@ import { Mp3Error } from "../utils/typings/error";
 
 // Lookup table for MPEG-1 Layer III bitrate indexes.
 // The header stores a 4-bit index, and this array maps that index to kbps.
-const MPEG1_LAYER3_BITRATES = [
-  0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 0,
-];
+const MPEG1_LAYER3_BITRATES = [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 0];
 
 // Lookup table for MPEG-1 sample rate indexes.
 // The header stores a 2-bit index, and this array maps that index to Hz.
@@ -58,7 +56,11 @@ function isMpeg1Layer3Header(byte2: number): boolean {
   return versionBits === MPEG1_VERSION_ID && layerBits === LAYER3_ID;
 }
 
-function getMpeg1Layer3FrameLength(bitrate: number, sampleRate: number, paddingBit: number): number {
+function getMpeg1Layer3FrameLength(
+  bitrate: number,
+  sampleRate: number,
+  paddingBit: number,
+): number {
   return Math.floor((MPEG1_LAYER3_FRAME_SIZE_MULTIPLIER * bitrate) / sampleRate + paddingBit);
 }
 
